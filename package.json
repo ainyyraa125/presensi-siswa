@@ -1,0 +1,25 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.3",
+    "bootstrap": "5.2",
+    "chart.js": "^3.9.1",
+    "create": "^0.0.2",
+    "nuxt": "^3.11.2",
+    "vite": "^5.2.11",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/supabase": "^1.2.2"
+  }
+}
