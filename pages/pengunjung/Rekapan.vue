@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid">
-    <h2 class="text-center my-4">REKAP PRESENSI PER MINGGU</h2>
-    <div class="my-3">
-      <nuxt-link to="/pengunjung/tambah">
+  <div class="my-3">
+      <nuxt-link to="/">
         <button type="button" class="btn btn-lg btn-secondary radius kembali" style="float: right;">KEMBALI</button>
       </nuxt-link>  
+    <h2 class="text-center my-4">REKAP PRESENSI PER MINGGU</h2>
       <label for="weekSelect" class="form-label">Pilih Minggu:</label>
       <select
         id="weekSelect"
