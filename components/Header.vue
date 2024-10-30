@@ -1,4 +1,5 @@
 <template>
+  <title>judul</title>
     <div class="row p-3 bg-primary text-white">
       <div class="col-12 col-lg-1">
         <img src="~/assets/img/LOGO-SMK4 (2).png" alt="Logo SMK Negeri 4 Tasikmalaya" />
