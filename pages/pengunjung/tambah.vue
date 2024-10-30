@@ -99,6 +99,15 @@
 }
 </style>
 <script setup>
+useHead({
+  title: "PRESENSI",
+  meta: [
+    {
+      name: "description",
+      content: "Halaman ISI DATA",
+    },
+  ],
+});
 const supabase = useSupabaseClient();
 const members = ref([]);
 const objectives = ref([]);

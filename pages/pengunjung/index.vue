@@ -48,6 +48,15 @@
 </template>
 
 <script setup>
+useHead({
+  title: "PRESENSI",
+  meta: [
+    {
+      name: "description",
+      content: "Halaman REKAPAN PER HARI",
+    },
+  ],
+});
 import { ref, onMounted, watch } from 'vue';
 const supabase = useSupabaseClient();
 const keyword = ref("");

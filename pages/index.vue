@@ -39,6 +39,17 @@
   </div>
   </template>
   
+<script setup>
+useHead({
+  title: "PRESENSI",
+  meta: [
+    {
+      name: "description",
+      content: "Selamat datang diaplikasi presensi siswa digital",
+    },
+  ],
+});
+</script>
   <style scoped>
   * {
     text-decoration: none;

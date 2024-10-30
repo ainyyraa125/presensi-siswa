@@ -47,6 +47,15 @@
 </template>
 
 <script setup>
+useHead({
+  title: "PRESENSI",
+  meta: [
+    {
+      name: "description",
+      content: "Halaman REKAPAN PERMINGGU",
+    },
+  ],
+});
 import { ref, onMounted } from 'vue';
 const supabase = useSupabaseClient();
 const loading = ref(true);
