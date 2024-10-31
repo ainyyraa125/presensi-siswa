@@ -43,7 +43,6 @@
 </template>
 
 <script setup>
-
 useHead({
   title: "PRESENSI",
   meta: [

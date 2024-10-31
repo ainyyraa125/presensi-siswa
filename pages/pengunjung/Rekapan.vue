@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid">
-    <div class="my-3">
+  <div class="my-3">
       <nuxt-link to="/">
         <button type="button" class="btn btn-lg btn-secondary radius kembali" style="float: right;">KEMBALI</button>
-      </nuxt-link>
-      <h2 class="text-center my-4">REKAP PRESENSI PER MINGGU</h2>
+      </nuxt-link>  
+    <h2 class="text-center my-4">REKAP PRESENSI PER MINGGU</h2>
       <label for="weekSelect" class="form-label">Pilih Minggu:</label>
       <select
         id="weekSelect"
@@ -15,7 +15,6 @@
         <option v-for="week in weeks" :key="week" :value="week">{{ week }}</option>
       </select>
     </div>
-    
     <div v-if="loading" class="text-center">Loading data...</div>
     <div v-else>
       <table class="table table-bordered">
