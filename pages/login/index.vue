@@ -31,7 +31,7 @@ const Login = async () => {
 
   loading.value = false;
 };
-</scrip>
+</script>
 
 <template>
   <div class="container-fluid mt-5">
