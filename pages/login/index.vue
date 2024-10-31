@@ -1,4 +1,6 @@
 <script setup>
+import { useHead } from '@vueuse/head';
+
 useHead({
   title: "login",
   meta: [
