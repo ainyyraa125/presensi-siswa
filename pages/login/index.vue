@@ -1,4 +1,14 @@
 <script setup>
+useHead({
+  title: "login",
+  meta: [
+    {
+      name: "description",
+      content: "Selamat mengisi",
+    },
+  ],
+});
+
 const supabase = useSupabaseClient();
 const email = ref("");
 const password = ref("");
@@ -21,7 +31,7 @@ const Login = async () => {
 
   loading.value = false;
 };
-</script>
+</scrip>
 
 <template>
   <div class="container-fluid mt-5">
