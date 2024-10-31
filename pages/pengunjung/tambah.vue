@@ -99,8 +99,6 @@
 }
 </style>
 <script setup>
-import { useHead } from '@vueuse/head';
-
 useHead({
   title: "PRESENSI",
   meta: [
