@@ -17,31 +17,33 @@
       <h3>Menampilkan {{ visitors.length }} dari {{ total }}</h3>
     </div>
     
-    <table class="table">
-      <thead>
-        <tr>
-          <td>#</td>
-          <td>TANGGAL</td>
-          <td>HARI</td>
-          <td>NAMA</td>
-          <td>KEHADIRAN</td>
-          <td>OPSI</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(visitor, i) in visitors" :key="i">
-          <td>{{ i + 1 }}</td>
-          <td>{{ visitor.tanggal }}</td>
-          <td>{{ visitor.hari?.hari }}</td>
-          <td>{{ visitor.siswa?.nama }}</td>
-          <td>{{ visitor.keterangan?.keterangan }}</td>
-          <td>{{ getOpsiText(visitor.opsi) }}</td> <!-- Menggunakan fungsi getOpsiText -->
-        </tr>
-        <tr v-if="visitors.length === 0">
-          <td colspan="6" class="text-center">Tidak ada data tersedia</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive"> <!-- Responsive table wrapper -->
+      <table class="table table-striped table-hover align-middle text-center">
+        <thead class="table-primary">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">TANGGAL</th>
+            <th scope="col">HARI</th>
+            <th scope="col">NAMA</th>
+            <th scope="col">KEHADIRAN</th>
+            <th scope="col">OPSI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(visitor, i) in visitors" :key="i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ visitor.tanggal }}</td>
+            <td>{{ visitor.hari?.hari }}</td>
+            <td>{{ visitor.siswa?.nama }}</td>
+            <td>{{ visitor.keterangan?.keterangan }}</td>
+            <td>{{ getOpsiText(visitor.opsi) }}</td>
+          </tr>
+          <tr v-if="visitors.length === 0">
+            <td colspan="6" class="text-center">Tidak ada data tersedia</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -62,12 +64,10 @@ const visitors = ref([]);
 const total = ref(0);
 const loading = ref(false);
 
-// Fungsi untuk mengubah nilai opsi menjadi teks
 const getOpsiText = (opsi) => {
   return opsi === 1 ? "masuk" : opsi === 2 ? "keluar" : "";
 };
 
-// Debounce function to limit API calls
 const debounce = (func, delay) => {
   let timeout;
   return (...args) => {
@@ -98,10 +98,8 @@ const getpengunjung = async () => {
   }
 };
 
-// Create a debounced version of the getpengunjung function
 const debouncedGetPengunjung = debounce(getpengunjung, 300);
 
-// Fetch data when component is mounted
 onMounted(() => {
   getpengunjung();
 });
@@ -110,5 +108,12 @@ onMounted(() => {
 <style scoped>
 .table {
   margin-top: 20px;
+}
+.table-responsive {
+  overflow-x: auto;
+}
+.table thead th,
+.table tbody td {
+  vertical-align: middle;
 }
 </style>
