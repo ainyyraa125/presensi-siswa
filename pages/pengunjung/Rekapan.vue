@@ -5,15 +5,14 @@
         <button type="button" class="btn btn-lg btn-secondary radius kembali" style="float: right;">KEMBALI</button>
       </nuxt-link>  
       <h2 class="text-center my-4">REKAP PRESENSI PER MINGGU</h2>
-      <label for="weekSelect" class="form-label">Pilih Minggu:</label>
-      <select
-        id="weekSelect"
-        v-model="selectedWeek"
-        @change="filterDataByWeek"
-        class="form-select"
-      >
-        <option v-for="week in weeks" :key="week" :value="week">{{ week }}</option>
-      </select>
+      <label for="dateSelect" class="form-label">Pilih Tanggal:</label>
+      <input
+        type="date"
+        id="dateSelect"
+        v-model="selectedDate"
+        @change="filterDataByDate"
+        class="form-control"
+      />
     </div>
 
     <div v-if="loading" class="text-center">Loading data...</div>
@@ -56,7 +55,7 @@ useHead({
   meta: [
     {
       name: "description",
-      content: "Halaman REKAPAN PERMINGGU",
+      content: "Halaman REKAPAN PER MINGGU",
     },
   ],
 });
@@ -65,8 +64,7 @@ const supabase = useSupabaseClient();
 const loading = ref(true);
 const rekapData = ref([]);
 const filteredRekapData = ref([]);
-const selectedWeek = ref("");
-const weeks = ref([]);
+const selectedDate = ref("");
 
 // Fungsi untuk mengambil data rekap presensi per minggu
 const fetchRekapData = async () => {
@@ -119,7 +117,6 @@ const fetchRekapData = async () => {
           rekap[key].jumlahAlfa++;
           break;
         default:
-          // Coba perbaiki kesalahan ejaan
           if (keterangan === "alpa") {
             rekap[key].jumlahAlfa++;
             console.warn(`Status diperbaiki: ${keterangan} menjadi alfa`);
@@ -130,8 +127,7 @@ const fetchRekapData = async () => {
     });
 
     rekapData.value = Object.values(rekap);
-    weeks.value = [...new Set(rekapData.value.map((r) => r.minggu))];
-    filterDataByWeek();
+    filterDataByDate();
   } catch (error) {
     console.error("Error fetching data:", error);
   } finally {
@@ -146,11 +142,13 @@ const getWeekNumber = (date) => {
   return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
 };
 
-// Fungsi untuk filter data berdasarkan minggu yang dipilih
-const filterDataByWeek = () => {
-  if (selectedWeek.value) {
+// Fungsi untuk filter data berdasarkan tanggal yang dipilih
+const filterDataByDate = () => {
+  if (selectedDate.value) {
+    const date = new Date(selectedDate.value);
+    const selectedWeek = `${date.getFullYear()}-W${getWeekNumber(date)}`;
     filteredRekapData.value = rekapData.value.filter(
-      (rekap) => rekap.minggu === selectedWeek.value
+      (rekap) => rekap.minggu === selectedWeek
     );
   } else {
     filteredRekapData.value = rekapData.value;
@@ -163,7 +161,7 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
+<style scoped lang="css">
 .table {
   margin-top: 20px;
 }
