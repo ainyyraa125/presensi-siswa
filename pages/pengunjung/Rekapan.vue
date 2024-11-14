@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid">
-  <div class="my-3">
+    <div class="my-3">
       <nuxt-link to="/">
         <button type="button" class="btn btn-lg btn-secondary radius kembali" style="float: right;">KEMBALI</button>
       </nuxt-link>  
-    <h2 class="text-center my-4">REKAP PRESENSI PER MINGGU</h2>
+      <h2 class="text-center my-4">REKAP PRESENSI PER MINGGU</h2>
       <label for="weekSelect" class="form-label">Pilih Minggu:</label>
       <select
         id="weekSelect"
@@ -15,33 +15,37 @@
         <option v-for="week in weeks" :key="week" :value="week">{{ week }}</option>
       </select>
     </div>
+
     <div v-if="loading" class="text-center">Loading data...</div>
+
     <div v-else>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">NAMA</th>
-            <th scope="col">MINGGU</th>
-            <th scope="col">JUMLAH HADIR</th>
-            <th scope="col">JUMLAH IZIN</th>
-            <th scope="col">JUMLAH SAKIT</th>
-            <th scope="col">JUMLAH ALFA</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(rekap, index) in filteredRekapData" :key="index">
-            <td>{{ rekap.nama }}</td>
-            <td>{{ rekap.minggu }}</td>
-            <td>{{ rekap.jumlahHadir }}</td>
-            <td>{{ rekap.jumlahIzin }}</td>
-            <td>{{ rekap.jumlahSakit }}</td>
-            <td>{{ rekap.jumlahAlfa }}</td>
-          </tr>
-          <tr v-if="filteredRekapData.length === 0">
-            <td colspan="6" class="text-center">Tidak ada data tersedia</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">NAMA</th>
+              <th scope="col">MINGGU</th>
+              <th scope="col">JUMLAH HADIR</th>
+              <th scope="col">JUMLAH IZIN</th>
+              <th scope="col">JUMLAH SAKIT</th>
+              <th scope="col">JUMLAH ALFA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(rekap, index) in filteredRekapData" :key="index">
+              <td>{{ rekap.nama }}</td>
+              <td>{{ rekap.minggu }}</td>
+              <td>{{ rekap.jumlahHadir }}</td>
+              <td>{{ rekap.jumlahIzin }}</td>
+              <td>{{ rekap.jumlahSakit }}</td>
+              <td>{{ rekap.jumlahAlfa }}</td>
+            </tr>
+            <tr v-if="filteredRekapData.length === 0">
+              <td colspan="6" class="text-center">Tidak ada data tersedia</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -162,5 +166,16 @@ onMounted(() => {
 <style scoped>
 .table {
   margin-top: 20px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+@media (max-width: 767px) {
+  .table th,
+  .table td {
+    white-space: nowrap;
+  }
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row my-5 ">
       <div class="col-12  mb-4">
-        <nuxt-link to="/logout">
+        <nuxt-link to="/login">
           <button type="submit" class="btn btn-lg btn-danger radius kembali">
             Logout
           </button>
